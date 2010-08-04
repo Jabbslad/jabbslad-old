@@ -15,8 +15,13 @@ compile '/stylesheet/' do
 end
 
 compile '*' do
-  filter :erb
-  filter :kramdown
+  case item[:extension]
+    when 'erb'
+      filter :erb
+    when 'markdown'
+      filter :erb
+      filter :kramdown
+    end
   layout 'default'
 end
 
